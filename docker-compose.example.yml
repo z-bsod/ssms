@@ -1,0 +1,29 @@
+---
+version: "3"
+
+services:
+  server:
+    build: .
+    restart: unless-stopped
+    stop_signal: SIGKILL
+    profiles:
+      - server
+      - dev
+    entrypoint: "python /app/server.py"
+    volumes:
+      - "./app/config:/app/config:ro"
+    ports:
+      - "5000:5000"
+
+  agent:
+    build: .
+    restart: unless-stopped
+    stop_signal: SIGKILL
+    profiles:
+      - agent
+      - dev
+    entrypoint: "python /app/agent.py"
+    volumes:
+      - "./app/config:/app/config:ro"
+    ports:
+      - "5001:5001"

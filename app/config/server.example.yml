@@ -1,0 +1,11 @@
+---
+frontend_users:
+  test: test123
+
+defaults:
+  interval: 30
+  password: test123
+
+servers:
+  - name: dev-container
+    url: http://agent:5001

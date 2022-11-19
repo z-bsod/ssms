@@ -1,0 +1,47 @@
+html {
+    font-family: sans-serif;
+    background: #888;
+}
+
+header {
+    color: #eee;
+    background: #333;
+    padding: 20px;
+}
+
+main {
+    padding: 20px;
+}
+
+main article {
+    background: #ccc;
+    padding: 4px;
+}
+
+table.checks {
+    border-collapse: collapse;
+}
+
+table.checks th {
+    border: 1px solid #222;
+}
+
+table.checks td {
+    border: 1px dotted #222;
+}
+
+body {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 0px;
+    background: #eee;
+    color: #222;
+}
+
+td.status_CRITICAL {
+    background: #ee2222;
+}
+
+td.status_OK {
+    background: #22ee22;
+}

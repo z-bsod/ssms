@@ -1,0 +1,49 @@
+<html>
+    <head>
+        <title>SSMS - Overview</title>
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='main.css') }}">
+    </head>
+    <body>
+    <header>
+        <h1>SSMS - servers</h1>
+    </header>
+    <main>
+        {% for server in servers %}
+        <article>
+        <h1>{{ server.get('name') }}</h1>
+        url: {{ server.get('url') }} | status: {{ server.server_conn_result }}
+        <table class="checks">
+            <tr>
+                <th>name</th>
+                <th>status</th>
+                <th>command</th>
+                <th>output</th>
+                <th>last try</th>
+                <th>last successful</th>
+            {% for check in server.get('check_results') %}
+            <tr>
+                <td>
+                    {{ check.get('name') }}
+                </td>
+                <td class="status_{{ check.get('state') }}">
+                    {{ check.get('state') }}
+                </td>
+                <td>
+                    {{ check.get('command') | join(' ') }}
+                </td>
+                <td>
+                    {{ check.get('output').get('output_text') }}
+                </td>
+                <td>
+                    {{ check.get('last_exec_start') }}
+                </td>
+                <td>
+                    {{ check.get('last_exec_finish') }}
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+        </article>
+        {% endfor %}
+    </body>
+</html>

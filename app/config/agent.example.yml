@@ -1,0 +1,23 @@
+---
+password: test123
+
+defaults:
+  interval: 5
+
+checks:
+  - name: uptime
+    command:
+      - /usr/bin/uptime
+  - name: mpd status
+    command:
+      - /usr/bin/systemctl
+      - status
+      - mpd
+  - name: disk check
+    command:
+      - /usr/lib/nagios/plugins/check_disk
+      - "-w"
+      - "10%"
+      - "-p"
+      - "/"
+    nagios_check: True

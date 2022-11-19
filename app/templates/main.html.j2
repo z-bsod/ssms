@@ -20,28 +20,30 @@
                 <th>output</th>
                 <th>last try</th>
                 <th>last successful</th>
-            {% for check in server.get('check_results') %}
-            <tr>
-                <td>
-                    {{ check.get('name') }}
-                </td>
-                <td class="status_{{ check.get('state') }}">
-                    {{ check.get('state') }}
-                </td>
-                <td>
-                    {{ check.get('command') | join(' ') }}
-                </td>
-                <td>
-                    {{ check.get('output').get('output_text') }}
-                </td>
-                <td>
-                    {{ check.get('last_exec_start') }}
-                </td>
-                <td>
-                    {{ check.get('last_exec_finish') }}
-                </td>
-            </tr>
-            {% endfor %}
+            {% if server.get('check_results') != None %}
+              {% for check in server.get('check_results', []) %}
+              <tr>
+                  <td>
+                      {{ check.get('name') }}
+                  </td>
+                  <td class="status_{{ check.get('state') }}">
+                      {{ check.get('state') }}
+                  </td>
+                  <td>
+                      {{ check.get('command') | join(' ') }}
+                  </td>
+                  <td>
+                      {{ check.get('output').get('output_text') }}
+                  </td>
+                  <td>
+                      {{ check.get('last_exec_start') }}
+                  </td>
+                  <td>
+                      {{ check.get('last_exec_finish') }}
+                  </td>
+              </tr>
+              {% endfor %}
+            {% endif %}
         </table>
         </article>
         {% endfor %}
